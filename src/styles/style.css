@@ -2,9 +2,9 @@
   position: relative;
   padding: 25px 0;
   background: rgba(0,0,0,.2);
-  max-width: 80%;
+  max-width: 90%;
   margin: 10px auto;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
 .userPic {
@@ -33,4 +33,47 @@
   right: 20px;
   bottom: 8px;
   margin: 0
+}
+
+.replied {
+  max-width: 10em;
+  max-height: 10em;
+  transform: translateX(50%);
+  background: rgba(0,0,0,.8);
+  color: white;
+  border-radius: 1em;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 5em;
+  height: 5em;
+
+}
+
+.repliedDetail {
+  margin: 0;
+}
+
+.userInfo {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.userInfoPic {
+  width: 10em;
+  height: 10em;
+}
+
+.userInfoName {
+  max-width: 10em;
+  text-align: center;
+  font-weight: bold;
+  margin: 15px 0 0 0;
+}
+
+.ck-editor__editable_inline {
+  min-height: 100px;
 }

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import NavigationBar from './components/NavigationBar'
 import { Container } from 'react-bootstrap'
 import PostCard from './components/PostCard'
+import Post from './Post'
 
 const LandingPage = () => {
   const posts = useSelector(state => state.postReducer.posts)
@@ -17,6 +18,8 @@ const LandingPage = () => {
           { userPost }
         </div>
       </Container>
+
+      <Post post={ posts[0] }/>
     </div>
   );
 }

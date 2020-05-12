@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
 import { Card } from 'react-bootstrap'
+import Replied from './Replied'
 
 const PostCard = ({ post }) => {
   const users = useSelector(state => state.userReducer.users)
@@ -12,7 +13,7 @@ const PostCard = ({ post }) => {
 
   return (
     <div className="postCardContainer">
-      <Card style={{ flexDirection: 'row', margin: "10px auto", height: "60%" }}>
+      <Card style={{ flexDirection: 'row', margin: "10px auto" }}>
         <Card.Img src={ getUserData().profilePic } className="rounded-circle userPic"/>
         <Card.Body style={{ marginRight: "50px" }}>
           <Card.Title>
@@ -21,7 +22,9 @@ const PostCard = ({ post }) => {
           <Card.Text>
             { post.description }
           </Card.Text>
+          <Card.Text>Read more..</Card.Text>
         </Card.Body>
+        <Replied />
       </Card>
       <p className="userName">
         { getUserData().username }
