@@ -1,0 +1,36 @@
+.postCardContainer {
+  position: relative;
+  padding: 25px 0;
+  background: rgba(0,0,0,.2);
+  max-width: 80%;
+  margin: 10px auto;
+  border-radius: 20px;
+}
+
+.userPic {
+  max-width: 10em;
+  max-height: 10em;
+  transform: translateX(-25%);
+  align-self: center;
+}
+
+.userName {
+  position: absolute;
+  left: 20px;
+  top: 5px;
+  margin: 0
+}
+
+.createdAt {
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  margin: 0
+}
+
+.likes {
+  position: absolute;
+  right: 20px;
+  bottom: 8px;
+  margin: 0
+}
