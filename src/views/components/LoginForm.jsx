@@ -3,6 +3,7 @@ import { Row, Col, Button, Form } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { sign } from '../../helpers/jwt'
+import Swal from 'sweetalert2'
 
 const LoginForm = ({ type }) => {
   const [username, setUsername] = useState()
@@ -13,6 +14,14 @@ const LoginForm = ({ type }) => {
 
   const getLastIndexOfUser = () => users[users.length - 1].id + 1
 
+  const showAlert = message => {
+    Swal.fire({
+      title: 'Error!',
+      text: message,
+      icon: 'error'
+    })
+  }
+
   const userLogin = event => {
     event.preventDefault()
     const findUser = users.filter(user => user.username === username)
@@ -21,10 +30,10 @@ const LoginForm = ({ type }) => {
         localStorage.token = sign({ id: findUser[0].id, username: findUser[0].username, profilePic: findUser[0].profilePic })
         history.push("/")
       } else {
-        console.log('wrong password')
+        showAlert('Wrong Password!')
       }
     } else {
-      console.log('username not found')
+      showAlert('User Not Found!')
     }
   }
 
