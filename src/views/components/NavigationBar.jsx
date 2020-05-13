@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 
-const MainNavbar = () => {
+const NavigationBar = () => {
   return (
     <div>
       <Navbar bg="dark" variant="dark">
@@ -20,4 +20,4 @@ const MainNavbar = () => {
   );
 }
 
-export default MainNavbar;
+export default NavigationBar;

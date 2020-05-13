@@ -1,1 +1,2 @@
 export const MODIFY_POST = 'MODIFY_POST'
+export const MODIFY_REPLY = 'MODIFY_REPLY'

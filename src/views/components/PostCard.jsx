@@ -3,12 +3,18 @@ import { useSelector } from 'react-redux'
 import { Card } from 'react-bootstrap'
 import Replied from './Replied'
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, replyCount }) => {
   const users = useSelector(state => state.userReducer.users)
 
   const getUserData = () => {
-    const user = users.filter(user => user.id === post.authorId)
+    const user = users.filter(user => user.id === post.userId)
     return user[0]
+  }
+
+  const getDate = () => {
+    const date = new Date(post.createdAt)
+    console.log(date)
+    return date.toLocaleString('id-ID')
   }
 
   return (
@@ -24,16 +30,13 @@ const PostCard = ({ post }) => {
           </Card.Text>
           <Card.Text>Read more..</Card.Text>
         </Card.Body>
-        <Replied />
+        <Replied replyCount={replyCount}/>
       </Card>
       <p className="userName">
         { getUserData().username }
       </p>
       <p className="createdAt">
-        { post.createdAt }
-      </p>
-      <p className="likes">
-        { post.likes }
+        { getDate() }
       </p>
     </div>
   );

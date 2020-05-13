@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Replied = () => {
+const Replied = ({ replyCount }) => {
   return (
     <div className="replied">
       <p className="repliedDetail">Replied :</p>
-      <p className="repliedDetail">0</p>
+      <p className="repliedDetail">{ replyCount }</p>
     </div>
   );
 }

@@ -4,11 +4,13 @@ import store from './store'
 import './App.css';
 
 import LandingPage from './views/LandingPage'
+import Login from './views/Login'
 
 function App() {
   return (
     <Provider store={store}>
-      <LandingPage />
+      {/* <LandingPage /> */}
+      <Login />
     </Provider>
   );
 }

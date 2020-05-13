@@ -1,23 +1,29 @@
+import { MODIFY_POST } from '../actionTypes'
+
 const initialState = {
   posts: [
     {
       id: 1,
       title: "First Post",
       description: "This is the first of the list",
-      authorId: 1,
-      createdAt: "Tue May 12 2020 17:35:53 GMT+0700",
-      likes: 0
+      userId: 1,
+      createdAt: "2020-05-13T11:05:37.178Z"
     },
     {
       id: 2,
       title: "Second Post",
       description: "This is the second",
-      authorId: 2,
-      createdAt: "Tue May 12 2020 17:35:53 GMT+0700",
-      likes: 0
+      userId: 2,
+      createdAt: "2020-05-13T11:05:37.178Z"
     }
   ]
 }
 
-const postReducer = (state = initialState, action) => state
+const postReducer = (state = initialState, action) => {
+  switch(action.type) {
+    case MODIFY_POST:
+      return { ...state, posts: action.payload }
+    default: return state
+  }
+}
 export default postReducer
