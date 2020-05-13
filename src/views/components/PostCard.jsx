@@ -2,6 +2,15 @@ import React from 'react';
 import { useSelector } from 'react-redux'
 import { Card } from 'react-bootstrap'
 import Replied from './Replied'
+import { Link } from 'react-router-dom'
+import HtmlToReact from 'html-to-react'
+
+const HtmlToReactParser = HtmlToReact.Parser
+
+const htmlParser = string => {
+  const htmlToReactParser = new HtmlToReactParser();
+  return htmlToReactParser.parse(string)
+}
 
 const PostCard = ({ post, replyCount }) => {
   const users = useSelector(state => state.userReducer.users)
@@ -13,7 +22,6 @@ const PostCard = ({ post, replyCount }) => {
 
   const getDate = () => {
     const date = new Date(post.createdAt)
-    console.log(date)
     return date.toLocaleString('id-ID')
   }
 
@@ -25,10 +33,10 @@ const PostCard = ({ post, replyCount }) => {
           <Card.Title>
             { post.title }
           </Card.Title>
-          <Card.Text>
-            { post.description }
-          </Card.Text>
-          <Card.Text>Read more..</Card.Text>
+          <div style={{ marginBottom: "30px" }}>
+            { htmlParser(post.description) }
+          </div>
+          <Link to={`post/${post.id}`}>Read more..</Link>
         </Card.Body>
         <Replied replyCount={replyCount}/>
       </Card>

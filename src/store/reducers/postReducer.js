@@ -5,7 +5,7 @@ const initialState = {
     {
       id: 1,
       title: "First Post",
-      description: "This is the first of the list",
+      description: "<b>This</b> is the <i>first</i> of the list",
       userId: 1,
       createdAt: "2020-05-13T11:05:37.178Z"
     },

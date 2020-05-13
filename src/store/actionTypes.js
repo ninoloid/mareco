@@ -1,2 +1,4 @@
 export const MODIFY_POST = 'MODIFY_POST'
 export const MODIFY_REPLY = 'MODIFY_REPLY'
+export const LOGGED_IN_USER = 'LOGGED_IN_USER'
+export const USER_REGISTER = 'USER_REGISTER'

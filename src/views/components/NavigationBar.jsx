@@ -1,20 +1,34 @@
 import React from 'react';
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
+import { Navbar, Nav, Button } from 'react-bootstrap'
+import { Link, useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const NavigationBar = () => {
+  const activeUser = useSelector(state => state.userReducer.loggedInUser)
+  const history = useHistory()
+
+  const userLogout = () => {
+    localStorage.clear()
+  }
+
   return (
     <div>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand>
+          <img
+            alt=""
+            src={ activeUser ? activeUser.profilePic : "" }
+            width="30"
+            height="30"
+            className="d-inline-block align-top rounded-circle"
+          />{' '}
+          { activeUser ? activeUser.username : "" }
+        </Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Nav.Link><Link to="/" style={{ textDecoration: 'none', fontWeight: 'bold', color: "white" }}>HOME</Link></Nav.Link>
         </Nav>
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Search</Button>
-        </Form>
+      { !activeUser && <Link to="/login"><Button variant="outline-info">Login</Button></Link> }
+      { activeUser && <Button variant="outline-info" onClick={userLogout}>Logout</Button> }
       </Navbar>
     </div>
   );

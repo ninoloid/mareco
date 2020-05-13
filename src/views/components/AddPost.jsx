@@ -4,10 +4,12 @@ import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Button } from 'react-bootstrap'
 
-const AddPost = ({ editorType, className, setAddPost }) => {
+const AddPost = ({ editorType, className, setAddPost, postId }) => {
   const posts = useSelector(state => state.postReducer.posts)
   const replies = useSelector(state => state.replyReducer.replies)
+  const activeUser = useSelector(state => state.userReducer.loggedInUser)
   const [title, setTitle] = useState()
+  const [description, setDescription] = useState()
   const dispatch = useDispatch()
 
   const handleTitleChange = (event) => {
@@ -18,33 +20,34 @@ const AddPost = ({ editorType, className, setAddPost }) => {
     setAddPost()
   }
 
+  const getLastIndexOfPost = () => posts[posts.length - 1].id + 1
+
+  const getLastIndexOfReply = () => replies[replies.length - 1].id + 1
+
   const submitPost = () => {
     if (editorType === "reply") {
-      console.log('replyyyyyyyyyyyy')
       const reply = {
-        id: 3,
-        userId: 2,
-        postId: 1,
-        description: "third",
+        id: getLastIndexOfReply(),
+        userId: activeUser.id,
+        postId,
+        description,
         createdAt: new Date()
       }
       const arrReplies = [...replies]
       arrReplies.push(reply)
       dispatch({ type: 'MODIFY_REPLY', payload: arrReplies })
-      console.log('ini arrReplies', arrReplies)
     } else {
-      console.log('aaaaaaa')
       const post = {
-        id: 3,
-        title: "Third Post",
-        description: "This is the third",
-        userId: 2,
+        id: getLastIndexOfPost(),
+        title,
+        description,
+        userId: activeUser.id,
         createdAt: new Date()
       }
       const arrPosts = [...posts]
       arrPosts.push(post)
       dispatch({ type: 'MODIFY_POST', payload: arrPosts })
-      console.log('ini arrPosts', arrPosts)
+      hideTheEditor()
     }
   }
 
@@ -75,22 +78,11 @@ const AddPost = ({ editorType, className, setAddPost }) => {
       <CKEditor
         editor={ ClassicEditor }
         data=""
-        onInit={ editor => {
-            // You can store the "editor" and use when it is needed.
-            console.log( 'Editor is ready to use!', editor );
-        } }
-        onChange={ ( event, editor ) => {
-            const data = editor.getData();
-            console.log( { event, editor, data } );
-        } }
-        onBlur={ ( event, editor ) => {
-            console.log( 'Blur.', editor );
-        } }
-        onFocus={ ( event, editor ) => {
-            console.log( 'Focus.', editor );
-        } }
+        onChange={ (event, editor) => {
+          const data = editor.getData();
+          setDescription(data)
+      } }
       />
-      <h1>{JSON.stringify(className)}</h1>
       { actionButton }
     </div>
   );
